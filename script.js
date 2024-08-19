@@ -22,10 +22,10 @@ function getNotes() {
 }
 
 /**
- * Populates checkedNotesMap, with name of all checked boxes serving as the note names
+ * Populates checkedNotesMap, with name of all checked 7th chord boxes (i.e. if A, Amaj7, Amin7, and A7 are checked, A is ignored) serving as the note names
  */
 function populateMap() {
-    let checked = document.querySelectorAll('input[type="checkbox"]:checked'); //get all checked boxes
+    let checked = document.querySelectorAll('input[type="checkbox"]:checked:not([class=noteName])'); //get all checked boxes
     if(checked.length === 0) { //perhaps refactor this
         checkedNotesMap.clear();
         alert("Check off some chords!")
@@ -54,3 +54,4 @@ function checkUncheckAllAffiliatedChords(e) {
 //TODO: format the display like a piano where the key presses down when you have it selected
 //TODO: save what you had selected last time
 //TODO: make it look better
+//TODO: tally up chords done
