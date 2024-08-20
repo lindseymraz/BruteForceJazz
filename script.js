@@ -1,10 +1,10 @@
-let noteNameCheckBoxes = document.querySelectorAll('input[type="checkbox"].noteName');
-noteNameCheckBoxes.forEach( (noteNameCheckBox ) => noteNameCheckBox.addEventListener('change', checkUncheckAllAffiliatedChords));
+document.querySelectorAll('input[type="checkbox"].noteName').forEach( (noteNameCheckBox ) => noteNameCheckBox.addEventListener('change', checkUncheckAllAffiliatedChords));
 
-const getNotesButton = document.getElementById("getNotesButton");
-getNotesButton.addEventListener("click", getNotes);
+document.getElementById("getChordsButton").addEventListener("click", getNotes);
 
 const checkedNotesMap = new Map(); //e.g. 0 to C, 1 to D#...
+
+const chordsGeneratedList = document.getElementById("chordsGeneratedList");
 
 function pickRandomNote() {
     return checkedNotesMap.get(Math.floor(Math.random() * checkedNotesMap.size));
@@ -12,13 +12,44 @@ function pickRandomNote() {
 
 function getNotes() {
     populateMap();
-    const output = document.getElementById("output");
-    output.textContent = ''; //replace all children with nothing
+    chordsGeneratedList.textContent = ''; //replace all children with nothing
     for(let i = 0; i < Number(document.getElementById("amtToGenerate").value); i++) {
         const noteMsg = document.createElement("p");
         noteMsg.textContent = pickRandomNote();
-        output.appendChild(noteMsg);
+        chordsGeneratedList.appendChild(noteMsg);
     }
+    showChordSets(); //refactor, this doesn't go in here, it isn't part of getting notes
+}
+
+function showChordSets() {
+    const chordsGeneratedArray = [];
+    const chordsNotGeneratedArray = [];
+    chordsGeneratedList.childNodes.forEach((element) => {
+        if(!chordsGeneratedArray.includes(element.innerText)) {
+            chordsGeneratedArray.push(element.innerText);
+        }
+    });
+    checkedNotesMap.forEach((value) => {
+        if(!chordsGeneratedArray.includes(value)) {
+            chordsNotGeneratedArray.push(value);
+        }
+    });
+    placeArrayContentInParagraph(chordsGeneratedArray, "chordsGeneratedSet");
+    placeArrayContentInParagraph(chordsNotGeneratedArray, "chordsNotGeneratedSet");
+}
+
+function placeArrayContentInParagraph(array, paragraphId) {
+    array.sort();
+    let str = "";
+    for(let i = 0; i < (array.length - 1); i++) {
+        str += array[i] + ", ";
+    }
+    if(array.length===0) {
+        str = "none";
+    } else {
+        str += array[array.length - 1];
+    }
+    document.getElementById(paragraphId).innerText = str;
 }
 
 /**
@@ -26,8 +57,8 @@ function getNotes() {
  */
 function populateMap() {
     let checked = document.querySelectorAll('input[type="checkbox"]:checked:not([class=noteName])'); //get all checked boxes
+    checkedNotesMap.clear();
     if(checked.length === 0) { //perhaps refactor this
-        checkedNotesMap.clear();
         alert("Check off some chords!")
     }
     for (let i = 0; i < checked.length; i++) {
@@ -54,4 +85,3 @@ function checkUncheckAllAffiliatedChords(e) {
 //TODO: format the display like a piano where the key presses down when you have it selected
 //TODO: save what you had selected last time
 //TODO: make it look better
-//TODO: tally up chords done
