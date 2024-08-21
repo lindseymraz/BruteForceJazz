@@ -142,7 +142,7 @@ function toggleAllChordsInCategory(e) {
         nodeList = document.querySelectorAll(`div.${e.target.id} > input[type="checkbox"]`);
     } else { //refactor?
         switch(e.target.id) {
-            case "allNoteBoxes": nodeList = document.querySelectorAll(`input[type="checkbox"]:not(.enforceAllSelectedToShowAtLeastOnce)`); break;
+            case "allNoteBoxes": nodeList = document.querySelectorAll(`input[type="checkbox"]:not(#enforceAllSelectedToShowAtLeastOnce)`); break;
             case "allWhiteKeys": nodeList = document.querySelectorAll(`div.white > input[type="checkbox"]`); break;
             case "allFlatKeys": nodeList = document.querySelectorAll(`div.flat > input[type="checkbox"]`); break;
             case "allSharpKeys": nodeList = document.querySelectorAll(`div.sharp > input[type="checkbox"]`); break;
