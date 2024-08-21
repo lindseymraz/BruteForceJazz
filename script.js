@@ -1,15 +1,15 @@
-document.querySelectorAll('input[type="checkbox"].noteName').forEach( (noteNameCheckBox ) => noteNameCheckBox.addEventListener('change', toggleAllChordsInCategory));
-document.querySelectorAll('input[type="checkbox"].fastCheckToggles').forEach( (fastToggleCheckBox ) => fastToggleCheckBox.addEventListener('change', toggleAllChordsInCategory));
+let enforceAllSelectedToShowAtLeastOnce = false;
 
+const checkedNotesMap = new Map(); //e.g. 0 to C, 1 to D#...
+const chordsGeneratedList = document.getElementById("chordsGeneratedList");
+
+document.querySelectorAll('input[type="checkbox"].noteName').forEach(noteNameCheckBox  => noteNameCheckBox.addEventListener('change', toggleAllChordsInCategory));
+document.querySelectorAll('input[type="checkbox"].fastCheckToggles').forEach(fastToggleCheckBox  => fastToggleCheckBox.addEventListener('change', toggleAllChordsInCategory));
+document.getElementById("enforceAllSelectedToShowAtLeastOnce").addEventListener('change', onToggleEnforceAllShows);
 document.getElementById("getChordsButton").addEventListener("click", onGetNotesClicked);
 document.getElementById("saveCookie").addEventListener("click", onSaveCookieClicked);
 document.getElementById("clearCookie").addEventListener("click", onClearCookieClicked);
-
 document.addEventListener('DOMContentLoaded', loadCookieContent);
-
-const checkedNotesMap = new Map(); //e.g. 0 to C, 1 to D#...
-
-const chordsGeneratedList = document.getElementById("chordsGeneratedList");
 
 function pickRandomNote() {
     return checkedNotesMap.get(Math.floor(Math.random() * checkedNotesMap.size));
@@ -19,7 +19,7 @@ function pickRandomNote() {
  * Populates checkedNotesMap, with name of all checked 7th chord boxes (i.e. if A, Amaj7, Amin7, and A7 are checked, A is ignored) serving as the note names
  */
 function populateMap() {
-    let checkedChords = document.querySelectorAll('input[type="checkbox"]:checked:not(.noteName)');
+    let checkedChords = document.querySelectorAll('input[type="checkbox"]:checked:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)');
     checkedNotesMap.clear();
     if(checkedChords.length === 0) { //perhaps refactor this
         alert("Check off some chords!")
@@ -30,35 +30,60 @@ function populateMap() {
 }
 
 function onGetNotesClicked() {
-    generateChordList();
-    showChordSets();
+    const generatedChordArray = generateChordArray();
+    getAndShowChordSets(generatedChordArray);
+    showChordList(generatedChordArray);
 }
 
-function generateChordList() {
+function generateChordArray() {
     populateMap();
+    const generatedChordArray = [];
     chordsGeneratedList.textContent = ''; //replace all children with nothing
     for(let i = 0; i < Number(document.getElementById("amtToGenerate").value); i++) {
-        const noteMsg = document.createElement("p");
-        noteMsg.textContent = pickRandomNote();
-        chordsGeneratedList.appendChild(noteMsg);
+        generatedChordArray[i] = pickRandomNote();
     }
+    return generatedChordArray;
 }
 
-function showChordSets() {
-    const chordsGeneratedArray = [];
-    const chordsNotGeneratedArray = [];
-    chordsGeneratedList.childNodes.forEach((element) => {
-        if(!chordsGeneratedArray.includes(element.textContent)) {
-            chordsGeneratedArray.push(element.textContent);
+function getAndShowChordSets(generatedChordArray) {
+    const chordsGeneratedSetArray = [];
+    const chordsNotGeneratedSetArray = [];
+    const duplicateIndices = [];
+    generatedChordArray.forEach((generatedChord, index) => {
+        if(!chordsGeneratedSetArray.includes(generatedChord)) {
+            chordsGeneratedSetArray.push(generatedChord);
+        } else { //already included in this array: a duplicate
+            if(enforceAllSelectedToShowAtLeastOnce) {
+                duplicateIndices.push(index);
+            }
         }
     });
     checkedNotesMap.forEach((value) => {
-        if(!chordsGeneratedArray.includes(value)) {
-            chordsNotGeneratedArray.push(value);
+        if(!chordsGeneratedSetArray.includes(value)) {
+            chordsNotGeneratedSetArray.push(value);
         }
     });
-    placeArrayContentInParagraph(chordsGeneratedArray, "chordsGeneratedSet");
-    placeArrayContentInParagraph(chordsNotGeneratedArray, "chordsNotGeneratedSet");
+    if(enforceAllSelectedToShowAtLeastOnce && !(chordsNotGeneratedSetArray.length === 0)) {
+        let i = duplicateIndices.length;
+        while(chordsNotGeneratedSetArray.length !== 0) {
+            const indexForDuplicate = Math.floor(Math.random() * i);
+            const indexForChord = Math.floor(Math.random() * chordsNotGeneratedSetArray.length);
+            generatedChordArray[duplicateIndices[indexForDuplicate]] = (chordsNotGeneratedSetArray[indexForChord]);
+            chordsGeneratedSetArray.push(chordsNotGeneratedSetArray[indexForChord]);
+            chordsNotGeneratedSetArray.splice(indexForChord, 1);
+            duplicateIndices.splice(indexForDuplicate, 1);
+        }
+    }
+    placeArrayContentInParagraph(chordsGeneratedSetArray, "chordsGeneratedSet");
+    placeArrayContentInParagraph(chordsNotGeneratedSetArray, "chordsNotGeneratedSet");
+}
+
+function showChordList(generatedChordArray) {
+    generatedChordArray.forEach((generatedChord) => {
+        const noteMsg = document.createElement("p");
+        noteMsg.textContent = generatedChord;
+        chordsGeneratedList.appendChild(noteMsg);
+    });
 }
 
 /**
@@ -72,11 +97,37 @@ function placeArrayContentInParagraph(array, paragraphId) {
     let str = "";
     if(array.length===0||array[0]==='') { //the case when array[0]==='' is for chordsGeneratedArray: grabs from chordsGeneratedList, which by chordsGeneratedList.textContent = '' in generateChordList() will have content so array.length===0 won't catch it
         str = "none";
+    } else if(paragraphId==="chordsGeneratedSet"&&array.length===checkedNotesMap.size) {
+        str = "all checked";
     } else {
-        array.forEach(element => str += element + ", ");
+        array.forEach(generatedChord => str += generatedChord + ", ");
         str = str.substring(0, str.length - 2);
     }
     document.getElementById(paragraphId).textContent = str;
+}
+
+function onToggleEnforceAllShows(e) {
+    if(e.target.checked) {//refactor?
+        if(Number(document.getElementById("amtToGenerate").value) < document.querySelectorAll(`input[type="checkbox"]:checked:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).length) {
+            alert("Cannot ensure all checked options will show at least once, as count of chords to generate is less than count of checked options");
+            e.target.checked = false;
+        } else {//refactor? having this function modify things with a boolean may not be the best
+            enforceAllSelectedToShowAtLeastOnce = true;
+            document.querySelectorAll(`input[type="checkbox"]:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).forEach(checkedChord => checkedChord.addEventListener('change', doesCountOfCheckedChordsExceed));
+        }
+    } else {
+        enforceAllSelectedToShowAtLeastOnce = false;
+        document.querySelectorAll(`input[type="checkbox"]:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).forEach(checkedChord => checkedChord.removeEventListener('change', doesCountOfCheckedChordsExceed));
+    }
+}
+
+function doesCountOfCheckedChordsExceed(e) {
+    if(e.target.checked) {
+        if(Number(document.getElementById("amtToGenerate").value) < document.querySelectorAll(`input[type="checkbox"]:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).length + 1) {
+            alert("Checking this option will make it impossible to show all checked options at least once, as the count of chords to generate will be less than than count of checked options");
+            e.target.checked = false;
+        }
+    }
 }
 
 /**
@@ -91,7 +142,7 @@ function toggleAllChordsInCategory(e) {
         nodeList = document.querySelectorAll(`div.${e.target.id} > input[type="checkbox"]`);
     } else { //refactor?
         switch(e.target.id) {
-            case "allBoxes": nodeList = document.querySelectorAll(`input[type="checkbox"]`); break;
+            case "allNoteBoxes": nodeList = document.querySelectorAll(`input[type="checkbox"]:not(.enforceAllSelectedToShowAtLeastOnce)`); break;
             case "allWhiteKeys": nodeList = document.querySelectorAll(`div.white > input[type="checkbox"]`); break;
             case "allFlatKeys": nodeList = document.querySelectorAll(`div.flat > input[type="checkbox"]`); break;
             case "allSharpKeys": nodeList = document.querySelectorAll(`div.sharp > input[type="checkbox"]`); break;
@@ -99,6 +150,13 @@ function toggleAllChordsInCategory(e) {
             case "allSharpWhiteKeys": nodeList = document.querySelectorAll(`div.sharp.white > input[type="checkbox"]`); break;
             case "allAccidentalWhiteKeys": nodeList = document.querySelectorAll(`div.flat.white > input[type="checkbox"], div.sharp.white > input[type="checkbox"]`); break;
             default: alert("Error!"); //refactor uh oh
+        }
+    }
+    if(enforceAllSelectedToShowAtLeastOnce && e.target.checked) {
+        if(Number(document.getElementById("amtToGenerate").value) < nodeList.length + document.querySelectorAll(`input[type="checkbox"]:checked:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).length) {
+            alert("Checking this option will make it impossible to show all checked options at least once, as the count of chords to generate will be less than than count of checked options");
+            e.target.checked = false;
+            return;
         }
     }
     nodeList.forEach((chordInCategory) => {
@@ -112,8 +170,8 @@ function toggleAllChordsInCategory(e) {
 function onSaveCookieClicked() {
     let checked = document.querySelectorAll('input[type="checkbox"]:checked');
     let str = "";
-    checked.forEach((element) => {
-        str += element.id + ", ";
+    checked.forEach((checkedBox) => {
+        str += checkedBox.id + ", ";
     });
     str = str.substring(0, str.length - 2);
     document.cookie = str;
@@ -125,12 +183,12 @@ function onClearCookieClicked() {
 
 function loadCookieContent() {
     if(document.cookie!=="") {
-        const chordsToSelect = document.cookie.split(", ");
+        const boxesToCheck = document.cookie.split(", ");
         //turn off the auto-checking of affiliated chords and fast toggles so we can manually check everything
         document.querySelectorAll('input[type="checkbox"].noteName').forEach((noteNameCheckBox) => noteNameCheckBox.removeEventListener('change', toggleAllChordsInCategory));
         document.querySelectorAll('input[type="checkbox"].fastCheckToggles').forEach( (fastToggleCheckBox ) => fastToggleCheckBox.removeEventListener('change', toggleAllChordsInCategory));
-        chordsToSelect.forEach((element) => {
-                document.getElementById(element).checked = "true";
+        boxesToCheck.forEach((box) => {
+                document.getElementById(box).checked = "true";
             }
         );
         //turn the auto-checking back on
@@ -140,6 +198,7 @@ function loadCookieContent() {
 }
 
 //TODO: autoselect and deselect groups of checkboxes (enharmonic equivalents...)
-//TODO: algorithm ensuring that you'll see every major, minor, and 7th iteration of a chord at least once
+//TODO: algorithm ensuring that you'll see every major, minor, and 7th iteration of a chord at least once within several sets
 //TODO: format the display like a piano where the key presses down when you have it selected
 //TODO: make it look better
+//TODO: refactor, especially textContent vs innerHTML vs innerText, whether a const is used in place of a document.querySelectorAll or getElementById, and whether you can replace Number(document.getElementById("amtToGenerate").value) and document.querySelectorAll(`input[type="checkbox"]:checked:not(.enforceAllSelectedToShowAtLeastOnce) with a const and its value will change when you change it, and making string quotes consistent ' vs "

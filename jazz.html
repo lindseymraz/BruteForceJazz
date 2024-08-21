@@ -9,8 +9,8 @@
 <body>
 <div>
     <div class="fastCheckToggles">
-        <input class="fastCheckToggles" type="checkbox" id="allBoxes" name="allBoxes" value="allBoxes">
-        <label class="fastCheckToggles" for="allBoxes">check everything</label>
+        <input class="fastCheckToggles" type="checkbox" id="allNoteBoxes" name="allNoteBoxes" value="allNoteBoxes">
+        <label class="fastCheckToggles" for="allNoteBoxes">check everything</label>
         <p>check all _ key chords</p>
         <input class="fastCheckToggles" type="checkbox" id="allWhiteKeys" name="allWhiteKeys" value="allWhiteKeys">
         <label class="fastCheckToggles" for="allWhiteKeys">white</label>
@@ -25,6 +25,8 @@
         <input class="fastCheckToggles" type="checkbox" id="allAccidentalWhiteKeys" name="allAccidentalWhiteKeys" value="allAccidentalWhiteKeys">
         <label class="fastCheckToggles" for="allAccidentalWhiteKeys">accidental name for white</label>
     </div>
+    <input type="checkbox" id="enforceAllSelectedToShowAtLeastOnce" name="enforceAllSelectedToShowAtLeastOnce" value="enforceAllSelectedToShowAtLeastOnce">
+    <label for="enforceAllSelectedToShowAtLeastOnce">ensure all selected chords appear at least once</label>
     <div class="Csharp sharp">
     <input class="noteName" type="checkbox" id="Csharp" name="C#" value="C♯">
     <label class="noteName" for="Csharp">C♯</label>
@@ -242,9 +244,9 @@
         <label class="7" for="B7">B7</label>
     </div>
 </div>
-<label for="amtToGenerate">Amount of notes to pick (1–100):</label>
+<label for="amtToGenerate">Amount of chords to pick (1–100):</label>
 <input type="number" id="amtToGenerate" min="1" max="100" value="1" step="1"/>
-<button id="getChordsButton">Get Notes</button>
+<button id="getChordsButton">Generate Chords</button>
 </body>
 <div id="output">
     <p>Chords you'll have done if you go through the whole list:</p>
