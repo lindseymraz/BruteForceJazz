@@ -123,7 +123,7 @@ function onToggleEnforceAllShows(e) {
 
 function doesCountOfCheckedChordsExceed(e) {
     if(e.target.checked) {
-        if(Number(document.getElementById("amtToGenerate").value) < document.querySelectorAll(`input[type="checkbox"]:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).length + 1) {
+        if(Number(document.getElementById("amtToGenerate").value) < document.querySelectorAll(`input[type="checkbox"]:checked:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).length) {
             alert("Checking this option will make it impossible to show all checked options at least once, as the count of chords to generate will be less than than count of checked options");
             e.target.checked = false;
         }
@@ -139,16 +139,16 @@ function doesCountOfCheckedChordsExceed(e) {
 function toggleAllChordsInCategory(e) {
     let nodeList;
     if(e.target.className === "noteName") {
-        nodeList = document.querySelectorAll(`div.${e.target.id} > input[type="checkbox"]`);
+        nodeList = document.querySelectorAll(`tr.${e.target.id} > td > input[type="checkbox"]`);
     } else { //refactor?
         switch(e.target.id) {
             case "allNoteBoxes": nodeList = document.querySelectorAll(`input[type="checkbox"]:not(#enforceAllSelectedToShowAtLeastOnce)`); break;
-            case "allWhiteKeys": nodeList = document.querySelectorAll(`div.white > input[type="checkbox"]`); break;
-            case "allFlatKeys": nodeList = document.querySelectorAll(`div.flat > input[type="checkbox"]`); break;
-            case "allSharpKeys": nodeList = document.querySelectorAll(`div.sharp > input[type="checkbox"]`); break;
-            case "allFlatWhiteKeys": nodeList = document.querySelectorAll(`div.flat.white > input[type="checkbox"]`); break;
-            case "allSharpWhiteKeys": nodeList = document.querySelectorAll(`div.sharp.white > input[type="checkbox"]`); break;
-            case "allAccidentalWhiteKeys": nodeList = document.querySelectorAll(`div.flat.white > input[type="checkbox"], div.sharp.white > input[type="checkbox"]`); break;
+            case "allWhiteKeys": nodeList = document.querySelectorAll(`tr.white input[type="checkbox"]`); break;
+            case "allFlatKeys": nodeList = document.querySelectorAll(`tr.flat input[type="checkbox"]`); break;
+            case "allSharpKeys": nodeList = document.querySelectorAll(`tr.sharp input[type="checkbox"]`); break;
+            case "allFlatWhiteKeys": nodeList = document.querySelectorAll(`tr.flat.white input[type="checkbox"]`); break;
+            case "allSharpWhiteKeys": nodeList = document.querySelectorAll(`tr.sharp.white input[type="checkbox"]`); break;
+            case "allAccidentalWhiteKeys": nodeList = document.querySelectorAll(`tr.flat.white input[type="checkbox"], tr.sharp.white input[type="checkbox"]`); break;
             default: alert("Error!"); //refactor uh oh
         }
     }
@@ -197,8 +197,9 @@ function loadCookieContent() {
     }
 }
 
-//TODO: autoselect and deselect groups of checkboxes (enharmonic equivalents...)
+//TODO: autoselect and deselect groups of checkboxes (enharmonic equivalents, column: maj7, min7, 7)
 //TODO: algorithm ensuring that you'll see every major, minor, and 7th iteration of a chord at least once within several sets
 //TODO: format the display like a piano where the key presses down when you have it selected
 //TODO: make it look better
 //TODO: refactor, especially textContent vs innerHTML vs innerText, whether a const is used in place of a document.querySelectorAll or getElementById, and whether you can replace Number(document.getElementById("amtToGenerate").value) and document.querySelectorAll(`input[type="checkbox"]:checked:not(.enforceAllSelectedToShowAtLeastOnce) with a const and its value will change when you change it, and making string quotes consistent ' vs "
+//TODO: make cookies work on iOS
