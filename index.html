@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,231 +8,239 @@
     <link href="styles/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="fastCheckToggles">
-        <input class="fastCheckToggles" type="checkbox" id="allNoteBoxes" name="allNoteBoxes" value="allNoteBoxes">
-        <label class="fastCheckToggles" for="allNoteBoxes">check all chords</label>
-        <p>check all _ key chords</p>
-        <input class="fastCheckToggles" type="checkbox" id="allWhiteKeys" name="allWhiteKeys" value="allWhiteKeys">
-        <label class="fastCheckToggles" for="allWhiteKeys">white</label>
-        <input class="fastCheckToggles" type="checkbox" id="allFlatKeys" name="allFlatKeys" value="allFlatKeys">
-        <label class="fastCheckToggles" for="allFlatKeys">flat</label>
-        <input class="fastCheckToggles" type="checkbox" id="allSharpKeys" name="allFlatKeys" value="allFlatKeys">
-        <label class="fastCheckToggles" for="allSharpKeys">sharp</label>
-        <input class="fastCheckToggles" type="checkbox" id="allFlatWhiteKeys" name="allFlatWhiteKeys" value="allFlatWhiteKeys">
-        <label class="fastCheckToggles" for="allFlatWhiteKeys">flat name for white</label>
-        <input class="fastCheckToggles" type="checkbox" id="allSharpWhiteKeys" name="allSharpWhiteKeys" value="allSharpWhiteKeys">
-        <label class="fastCheckToggles" for="allSharpWhiteKeys">sharp name for white</label>
-        <input class="fastCheckToggles" type="checkbox" id="allAccidentalWhiteKeys" name="allAccidentalWhiteKeys" value="allAccidentalWhiteKeys">
-        <label class="fastCheckToggles" for="allAccidentalWhiteKeys">accidental name for white</label>
-    </div>
-    <input type="checkbox" id="enforceAllSelectedToShowAtLeastOnce" name="enforceAllSelectedToShowAtLeastOnce" value="enforceAllSelectedToShowAtLeastOnce">
-    <label for="enforceAllSelectedToShowAtLeastOnce">ensure all selected chords appear at least once</label>
-    <table>
-        <colgroup>
-            <col />
-            <col />
-            <col />
-            <col />
-        </colgroup>
-        <thead>
-        <th scope="col"></th>
-        <th scope="col">maj7</th>
-        <th scope="col">min7</th>
-        <th scope="col">7</th>
-        </thead>
-        <tbody>
-        <tr class="Csharp sharp">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Csharp" name="C#" value="C♯">
-                <label class="noteName" for="Csharp">C♯</label></th>
-            <td><input class="maj7" type="checkbox" id="C#maj7" name="C#maj7" value="C♯maj7">
+<div class="fastCheckToggles">
+    <input class="fastCheckToggles" type="checkbox" id="allNoteBoxes" name="allNoteBoxes" value="allNoteBoxes">
+    <label class="fastCheckToggles" for="allNoteBoxes">check all chords</label>
+    <p>check all _ key chords</p>
+    <input class="fastCheckToggles" type="checkbox" id="allWhiteKeys" name="allWhiteKeys" value="allWhiteKeys">
+    <label class="fastCheckToggles" for="allWhiteKeys">white</label>
+    <input class="fastCheckToggles" type="checkbox" id="allFlatKeys" name="allFlatKeys" value="allFlatKeys">
+    <label class="fastCheckToggles" for="allFlatKeys">flat</label>
+    <input class="fastCheckToggles" type="checkbox" id="allSharpKeys" name="allFlatKeys" value="allFlatKeys">
+    <label class="fastCheckToggles" for="allSharpKeys">sharp</label>
+    <input class="fastCheckToggles" type="checkbox" id="allFlatWhiteKeys" name="allFlatWhiteKeys" value="allFlatWhiteKeys">
+    <label class="fastCheckToggles" for="allFlatWhiteKeys">flat name for white</label>
+    <input class="fastCheckToggles" type="checkbox" id="allSharpWhiteKeys" name="allSharpWhiteKeys" value="allSharpWhiteKeys">
+    <label class="fastCheckToggles" for="allSharpWhiteKeys">sharp name for white</label>
+    <input class="fastCheckToggles" type="checkbox" id="allAccidentalWhiteKeys" name="allAccidentalWhiteKeys" value="allAccidentalWhiteKeys">
+    <label class="fastCheckToggles" for="allAccidentalWhiteKeys">accidental name for white</label>
+</div>
+<input type="checkbox" id="enforceAllSelectedToShowAtLeastOnce" name="enforceAllSelectedToShowAtLeastOnce" value="enforceAllSelectedToShowAtLeastOnce">
+<label for="enforceAllSelectedToShowAtLeastOnce">ensure all selected chords appear at least once</label>
+<table>
+    <colgroup>
+        <col />
+        <col/>
+        <col/>
+        <col/>
+    </colgroup>
+    <thead>
+    <th scope="col"></th>
+    <th scope="col" id="maj7">
+        <input class="fastCheckToggles" type="checkbox" id="maj7Box" name="maj7Box">
+        <label class="fastCheckToggles" for="maj7Box">maj7</label>
+    </th>
+    <th scope="col" id="min7">
+        <input class="fastCheckToggles" type="checkbox" id="min7Box" name="min7Box">
+        <label class="fastCheckToggles" for="min7Box">min7</label>
+    </th>
+    <th scope="col" id="seventh">
+        <input class="fastCheckToggles" type="checkbox" id="7Box" name="7Box">
+        <label class="fastCheckToggles" for="7Box">7</label>
+    </th>        </thead>
+    <tbody>
+    <tr class="Csharp sharp">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Csharp" name="C#" value="C♯">
+            <label class="noteName" for="Csharp">C♯</label></th>
+        <td><input class="maj7" type="checkbox" id="C#maj7" name="C#maj7" value="C♯maj7">
             <label class="maj7" for="C#maj7">C♯maj7</label></td>
-            <td><input class="min7" type="checkbox" id="C#min7" name="C#min7" value="C♯min7">
+        <td><input class="min7" type="checkbox" id="C#min7" name="C#min7" value="C♯min7">
             <label class="min7" for="C#min7">C♯min7</label></td>
-            <td><input class="7" type="checkbox" id="C#7" name="C#7" value="C♯7">
+        <td><input class="7" type="checkbox" id="C#7" name="C#7" value="C♯7">
             <label class="7" for="C#7">C♯7</label></td>
-        </tr><tr class="Dsharp sharp">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Dsharp" name="D#" value="D♯">
+    </tr><tr class="Dsharp sharp">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Dsharp" name="D#" value="D♯">
             <label class="noteName" for="Dsharp">D♯</label></th>
-            <td><input class="maj7" type="checkbox" id="D#maj7" name="D#maj7" value="D♯maj7">
+        <td><input class="maj7" type="checkbox" id="D#maj7" name="D#maj7" value="D♯maj7">
             <label class="maj7" for="D#maj7">D♯maj7</label></td>
-            <td><input class="min7" type="checkbox" id="D#min7" name="D#min7" value="D♯min7">
+        <td><input class="min7" type="checkbox" id="D#min7" name="D#min7" value="D♯min7">
             <label class="min7" for="D#min7">D♯min7</label></td>
-            <td><input class="7" type="checkbox" id="D#7" name="D#7" value="D♯7">
+        <td><input class="7" type="checkbox" id="D#7" name="D#7" value="D♯7">
             <label class="7" for="D#7">D♯7</label></td>
-        </tr><tr class="Fsharp sharp">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Fsharp" name="F#" value="F♯">
+    </tr><tr class="Fsharp sharp">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Fsharp" name="F#" value="F♯">
             <label class="noteName" for="Fsharp">F♯</label></th>
-            <td><input class="maj7" type="checkbox" id="F#maj7" name="F#maj7" value="F♯maj7">
+        <td><input class="maj7" type="checkbox" id="F#maj7" name="F#maj7" value="F♯maj7">
             <label class="maj7" for="F#maj7">F♯maj7</label></td>
-            <td><input class="min7" type="checkbox" id="F#min7" name="F#min7" value="F♯min7">
+        <td><input class="min7" type="checkbox" id="F#min7" name="F#min7" value="F♯min7">
             <label class="min7" for="F#min7">F♯min7</label></td>
-            <td><input class="7" type="checkbox" id="F#7" name="F#7" value="F♯7">
+        <td><input class="7" type="checkbox" id="F#7" name="F#7" value="F♯7">
             <label class="7" for="F#7">F♯7</label></td>
-        </tr><tr class="Gsharp sharp">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Gsharp" name="G#" value="G♯">
+    </tr><tr class="Gsharp sharp">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Gsharp" name="G#" value="G♯">
             <label class="noteName" for="Gsharp">G♯</label></th>
-            <td><input class="maj7" type="checkbox" id="G#maj7" name="G#maj7" value="G♯maj7">
+        <td><input class="maj7" type="checkbox" id="G#maj7" name="G#maj7" value="G♯maj7">
             <label class="maj7" for="G#maj7">G♯maj7</label></td>
-            <td><input class="min7" type="checkbox" id="G#min7" name="G#min7" value="G♯min7">
+        <td><input class="min7" type="checkbox" id="G#min7" name="G#min7" value="G♯min7">
             <label class="min7" for="G#min7">G♯min7</label></td>
-            <td><input class="7" type="checkbox" id="G#7" name="G#7" value="G♯7">
+        <td><input class="7" type="checkbox" id="G#7" name="G#7" value="G♯7">
             <label class="7" for="G#7">G♯7</label></td>
-        </tr><tr class="Asharp sharp">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Asharp" name="A#" value="A♯">
+    </tr><tr class="Asharp sharp">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Asharp" name="A#" value="A♯">
             <label class="noteName" for="Asharp">A♯</label></th>
-            <td><input class="maj7" type="checkbox" id="A#maj7" name="A#maj7" value="A♯maj7">
+        <td><input class="maj7" type="checkbox" id="A#maj7" name="A#maj7" value="A♯maj7">
             <label class="maj7" for="A#maj7">A♯maj7</label></td>
-            <td><input class="min7" type="checkbox" id="A#min7" name="A#min7" value="A♯min7">
+        <td><input class="min7" type="checkbox" id="A#min7" name="A#min7" value="A♯min7">
             <label class="min7" for="A#min7">A♯min7</label></td>
-            <td><input class="7" type="checkbox" id="A#7" name="A#7" value="A♯7">
+        <td><input class="7" type="checkbox" id="A#7" name="A#7" value="A♯7">
             <label class="7" for="A#7">A♯7</label></td>
-        </tr><tr class="Db flat">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Db" name="Db" value="D♭">
+    </tr><tr class="Db flat">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Db" name="Db" value="D♭">
             <label class="noteName" for="Db">D♭</label></th>
-            <td><input class="maj7" type="checkbox" id="Dbmaj7" name="Dbmaj7" value="D♭maj7">
+        <td><input class="maj7" type="checkbox" id="Dbmaj7" name="Dbmaj7" value="D♭maj7">
             <label class="maj7" for="Dbmaj7">D♭maj7</label></td>
-            <td><input class="min7" type="checkbox" id="Dbmin7" name="Dbmin7" value="D♭min7">
+        <td><input class="min7" type="checkbox" id="Dbmin7" name="Dbmin7" value="D♭min7">
             <label class="min7" for="Dbmin7">D♭min7</label></td>
-            <td><input class="7" type="checkbox" id="Db7" name="Db7" value="D♭7">
+        <td><input class="7" type="checkbox" id="Db7" name="Db7" value="D♭7">
             <label class="7" for="Db7">D♭7</label></td>
-        </tr><tr class="Eb flat">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Eb" name="Eb" value="E♭">
+    </tr><tr class="Eb flat">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Eb" name="Eb" value="E♭">
             <label class="noteName" for="Eb">E♭</label></th>
-            <td><input class="maj7" type="checkbox" id="Ebmaj7" name="Ebmaj7" value="E♭maj7">
+        <td><input class="maj7" type="checkbox" id="Ebmaj7" name="Ebmaj7" value="E♭maj7">
             <label class="maj7" for="Ebmaj7">E♭maj7</label></td>
-            <td><input class="min7" type="checkbox" id="Ebmin7" name="Ebmin7" value="E♭min7">
+        <td><input class="min7" type="checkbox" id="Ebmin7" name="Ebmin7" value="E♭min7">
             <label class="min7" for="Ebmin7">E♭min7</label></td>
-            <td><input class="7" type="checkbox" id="Eb7" name="Eb7" value="E♭7">
+        <td><input class="7" type="checkbox" id="Eb7" name="Eb7" value="E♭7">
             <label class="7" for="Eb7">E♭7</label></td>
-        </tr><tr class="Gb flat">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Gb" name="Gb" value="G♭">
+    </tr><tr class="Gb flat">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Gb" name="Gb" value="G♭">
             <label class="noteName" for="Gb">G♭</label></th>
-            <td><input class="maj7" type="checkbox" id="Gbmaj7" name="Gbmaj7" value="G♭maj7">
+        <td><input class="maj7" type="checkbox" id="Gbmaj7" name="Gbmaj7" value="G♭maj7">
             <label class="maj7" for="Gbmaj7">G♭maj7</label></td>
-            <td><input class="min7" type="checkbox" id="Gbmin7" name="Gbmin7" value="G♭min7">
+        <td><input class="min7" type="checkbox" id="Gbmin7" name="Gbmin7" value="G♭min7">
             <label class="min7" for="Gbmin7">G♭min7</label></td>
-            <td><input class="7" type="checkbox" id="Gb7" name="Gb7" value="G♭7">
+        <td><input class="7" type="checkbox" id="Gb7" name="Gb7" value="G♭7">
             <label class="7" for="Gb7">G♭7</label></td>
-        </tr><tr class="Ab flat">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Ab" name="Ab" value="A♭">
+    </tr><tr class="Ab flat">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Ab" name="Ab" value="A♭">
             <label class="noteName" for="Ab">A♭</label></th>
-            <td><input class="maj7" type="checkbox" id="Abmaj7" name="Abmaj7" value="A♭maj7">
+        <td><input class="maj7" type="checkbox" id="Abmaj7" name="Abmaj7" value="A♭maj7">
             <label class="maj7" for="Abmaj7">A♭maj7</label></td>
-            <td><input class="min7" type="checkbox" id="Abmin7" name="Abmin7" value="A♭min7">
+        <td><input class="min7" type="checkbox" id="Abmin7" name="Abmin7" value="A♭min7">
             <label class="min7" for="Abmin7">A♭min7</label></td>
-            <td><input class="7" type="checkbox" id="Ab7" name="Ab7" value="A♭7">
+        <td><input class="7" type="checkbox" id="Ab7" name="Ab7" value="A♭7">
             <label class="7" for="Ab7">A♭7</label></td>
-        </tr><tr class="Bb flat">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Bb" name="Bb" value="B♭">
+    </tr><tr class="Bb flat">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Bb" name="Bb" value="B♭">
             <label class="noteName" for="Bb">B♭</label></th>
-            <td><input class="maj7" type="checkbox" id="Bbmaj7" name="Bbmaj7" value="B♭maj7">
+        <td><input class="maj7" type="checkbox" id="Bbmaj7" name="Bbmaj7" value="B♭maj7">
             <label class="maj7" for="Bbmaj7">B♭maj7</label></td>
-            <td><input class="min7" type="checkbox" id="Bbmin7" name="Bbmin7" value="B♭min7">
+        <td><input class="min7" type="checkbox" id="Bbmin7" name="Bbmin7" value="B♭min7">
             <label class="min7" for="Bbmin7">B♭min7</label></td>
-            <td><input class="7" type="checkbox" id="Bb7" name="Bb7" value="B♭7">
+        <td><input class="7" type="checkbox" id="Bb7" name="Bb7" value="B♭7">
             <label class="7" for="Bb7">B♭7</label></td>
-        </tr><tr class="Bsharp sharp white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Bsharp" name="B#" value="B♯">
+    </tr><tr class="Bsharp sharp white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Bsharp" name="B#" value="B♯">
             <label class="noteName" for="Bsharp">B♯</label></th>
-            <td><input class="maj7" type="checkbox" id="B#maj7" name="B#maj7" value="B♯maj7">
+        <td><input class="maj7" type="checkbox" id="B#maj7" name="B#maj7" value="B♯maj7">
             <label class="maj7" for="B#maj7">B♯maj7</label></td>
-            <td><input class="min7" type="checkbox" id="B#min7" name="B#min7" value="B♯min7">
+        <td><input class="min7" type="checkbox" id="B#min7" name="B#min7" value="B♯min7">
             <label class="min7" for="B#min7">B♯min7</label></td>
-            <td><input class="7" type="checkbox" id="B#7" name="B#7" value="B♯7">
+        <td><input class="7" type="checkbox" id="B#7" name="B#7" value="B♯7">
             <label class="7" for="B#7">B♯7</label></td>
-        </tr><tr class="Fb flat white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Fb" name="Fb" value="F♭">
+    </tr><tr class="Fb flat white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Fb" name="Fb" value="F♭">
             <label class="noteName" for="Fb">F♭</label></th>
-            <td><input class="maj7" type="checkbox" id="Fbmaj7" name="Fbmaj7" value="F♭maj7">
+        <td><input class="maj7" type="checkbox" id="Fbmaj7" name="Fbmaj7" value="F♭maj7">
             <label class="maj7" for="Fbmaj7">F♭maj7</label></td>
-            <td><input class="min7" type="checkbox" id="Fbmin7" name="Fbmin7" value="F♭min7">
+        <td><input class="min7" type="checkbox" id="Fbmin7" name="Fbmin7" value="F♭min7">
             <label class="min7" for="Fbmin7">F♭min7</label></td>
-            <td><input class="7" type="checkbox" id="Fb7" name="Fb7" value="F♭7">
+        <td><input class="7" type="checkbox" id="Fb7" name="Fb7" value="F♭7">
             <label class="7" for="Fb7">F♭7</label></td>
-        </tr><tr class="Esharp sharp white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Esharp" name="E#" value="E♯">
+    </tr><tr class="Esharp sharp white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Esharp" name="E#" value="E♯">
             <label class="noteName" for="Esharp">E♯</label></th>
-            <td><input class="maj7" type="checkbox" id="E#maj7" name="E#maj7" value="E♯maj7">
+        <td><input class="maj7" type="checkbox" id="E#maj7" name="E#maj7" value="E♯maj7">
             <label class="maj7" for="E#maj7">E♯maj7</label></td>
-            <td><input class="min7" type="checkbox" id="E#min7" name="E#min7" value="E♯min7">
+        <td><input class="min7" type="checkbox" id="E#min7" name="E#min7" value="E♯min7">
             <label class="min7" for="E#min7">E♯min7</label></td>
-            <td><input class="7" type="checkbox" id="E#7" name="E#7" value="E♯7">
+        <td><input class="7" type="checkbox" id="E#7" name="E#7" value="E♯7">
             <label class="7" for="E#7">E♯7</label></td>
-        </tr><tr class="Cb flat white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="Cb" name="Cb" value="C♭">
+    </tr><tr class="Cb flat white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="Cb" name="Cb" value="C♭">
             <label class="noteName" for="Cb">C♭</label></th>
-            <td><input class="maj7" type="checkbox" id="Cbmaj7" name="Cbmaj7" value="C♭maj7">
+        <td><input class="maj7" type="checkbox" id="Cbmaj7" name="Cbmaj7" value="C♭maj7">
             <label class="maj7" for="Cbmaj7">C♭maj7</label></td>
-            <td><input class="min7" type="checkbox" id="Cbmin7" name="Cbmin7" value="C♭min7">
+        <td><input class="min7" type="checkbox" id="Cbmin7" name="Cbmin7" value="C♭min7">
             <label class="min7" for="Cbmin7">C♭min7</label></td>
-            <td><input class="7" type="checkbox" id="Cb7" name="Cb7" value="C♭7">
+        <td><input class="7" type="checkbox" id="Cb7" name="Cb7" value="C♭7">
             <label class="7" for="Cb7">C♭7</label></td>
-        </tr><tr class="C white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="C" name="C" value="C">
+    </tr><tr class="C white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="C" name="C" value="C">
             <label class="noteName" for="C">C</label></th>
-            <td><input class="maj7" type="checkbox" id="Cmaj7" name="Cmaj7" value="Cmaj7">
+        <td><input class="maj7" type="checkbox" id="Cmaj7" name="Cmaj7" value="Cmaj7">
             <label class="maj7" for="Cmaj7">Cmaj7</label></td>
-            <td><input class="min7" type="checkbox" id="Cmin7" name="Cmin7" value="Cmin7">
+        <td><input class="min7" type="checkbox" id="Cmin7" name="Cmin7" value="Cmin7">
             <label class="min7" for="Cmin7">Cmin7</label></td>
-            <td><input class="7" type="checkbox" id="C7" name="C7" value="C7">
+        <td><input class="7" type="checkbox" id="C7" name="C7" value="C7">
             <label class="7" for="C7">C7</label></td>
-        </tr><tr class="D white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="D" name="D" value="D">
+    </tr><tr class="D white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="D" name="D" value="D">
             <label class="noteName" for="D">D</label></th>
-            <td><input class="maj7" type="checkbox" id="Dmaj7" name="Dmaj7" value="Dmaj7">
+        <td><input class="maj7" type="checkbox" id="Dmaj7" name="Dmaj7" value="Dmaj7">
             <label class="maj7" for="Dmaj7">Dmaj7</label></td>
-            <td><input class="min7" type="checkbox" id="Dmin7" name="Dmin7" value="Dmin7">
+        <td><input class="min7" type="checkbox" id="Dmin7" name="Dmin7" value="Dmin7">
             <label class="min7" for="Dmin7">Dmin7</label></td>
-            <td><input class="7" type="checkbox" id="D7" name="D7" value="D7">
+        <td><input class="7" type="checkbox" id="D7" name="D7" value="D7">
             <label class="7" for="D7">D7</label></td>
-        </tr><tr class="E white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="E" name="E" value="E">
+    </tr><tr class="E white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="E" name="E" value="E">
             <label class="noteName" for="E">E</label></th>
-            <td><input class="maj7" type="checkbox" id="Emaj7" name="Emaj7" value="Emaj7">
+        <td><input class="maj7" type="checkbox" id="Emaj7" name="Emaj7" value="Emaj7">
             <label class="maj7" for="Emaj7">Emaj7</label></td>
-            <td><input class="min7" type="checkbox" id="Emin7" name="Emin7" value="Emin7">
+        <td><input class="min7" type="checkbox" id="Emin7" name="Emin7" value="Emin7">
             <label class="min7" for="Emin7">Emin7</label></td>
-            <td><input class="7" type="checkbox" id="E7" name="E7" value="E7">
+        <td><input class="7" type="checkbox" id="E7" name="E7" value="E7">
             <label class="7" for="E7">E7</label></td>
-        </tr><tr class="F white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="F" name="F" value="F">
+    </tr><tr class="F white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="F" name="F" value="F">
             <label class="noteName" for="F">F</label></th>
-            <td><input class="maj7" type="checkbox" id="Fmaj7" name="Fmaj7" value="Fmaj7">
+        <td><input class="maj7" type="checkbox" id="Fmaj7" name="Fmaj7" value="Fmaj7">
             <label class="maj7" for="Fmaj7">Fmaj7</label></td>
-            <td><input class="min7" type="checkbox" id="Fmin7" name="Fmin7" value="Fmin7">
+        <td><input class="min7" type="checkbox" id="Fmin7" name="Fmin7" value="Fmin7">
             <label class="min7" for="Fmin7">Fmin7</label></td>
-            <td><input class="7" type="checkbox" id="F7" name="F7" value="F7">
+        <td><input class="7" type="checkbox" id="F7" name="F7" value="F7">
             <label class="7" for="F7">F7</label></td>
-        </tr><tr class="G white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="G" name="G" value="G">
+    </tr><tr class="G white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="G" name="G" value="G">
             <label class="noteName" for="G">G</label></th>
-            <td><input class="maj7" type="checkbox" id="Gmaj7" name="Gmaj7" value="Gmaj7">
+        <td><input class="maj7" type="checkbox" id="Gmaj7" name="Gmaj7" value="Gmaj7">
             <label class="maj7" for="Gmaj7">Gmaj7</label></td>
-            <td><input class="min7" type="checkbox" id="Gmin7" name="Gmin7" value="Gmin7">
+        <td><input class="min7" type="checkbox" id="Gmin7" name="Gmin7" value="Gmin7">
             <label class="min7" for="Gmin7">Gmin7</label></td>
-            <td><input class="7" type="checkbox" id="G7" name="G7" value="G7">
+        <td><input class="7" type="checkbox" id="G7" name="G7" value="G7">
             <label class="7" for="G7">G7</label></td>
-        </tr><tr class="A white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="A" name="A" value="A">
+    </tr><tr class="A white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="A" name="A" value="A">
             <label class="noteName" for="A">A</label></th>
-            <td><input class="maj7" type="checkbox" id="Amaj7" name="Amaj7" value="Amaj7">
+        <td><input class="maj7" type="checkbox" id="Amaj7" name="Amaj7" value="Amaj7">
             <label class="maj7" for="Amaj7">Amaj7</label></td>
-            <td><input class="min7" type="checkbox" id="Amin7" name="Amin7" value="Amin7">
+        <td><input class="min7" type="checkbox" id="Amin7" name="Amin7" value="Amin7">
             <label class="min7" for="Amin7">Amin7</label></td>
-            <td><input class="7" type="checkbox" id="A7" name="A7" value="A7">
+        <td><input class="7" type="checkbox" id="A7" name="A7" value="A7">
             <label class="7" for="A7">A7</label></td>
-        </tr><tr class="B white">
-            <th scope = "row"><input class="noteName" type="checkbox" id="B" name="B" value="B">
+    </tr><tr class="B white">
+        <th scope = "row"><input class="noteName" type="checkbox" id="B" name="B" value="B">
             <label class="noteName" for="B">B</label></th>
-            <td><input class="maj7" type="checkbox" id="Bmaj7" name="Bmaj7" value="Bmaj7">
+        <td><input class="maj7" type="checkbox" id="Bmaj7" name="Bmaj7" value="Bmaj7">
             <label class="maj7" for="Bmaj7">Bmaj7</label></td>
-            <td><input class="min7" type="checkbox" id="Bmin7" name="Bmin7" value="Bmin7">
+        <td><input class="min7" type="checkbox" id="Bmin7" name="Bmin7" value="Bmin7">
             <label class="min7" for="Bmin7">Bmin7</label></td>
-            <td><input class="7" type="checkbox" id="B7" name="B7" value="B7">
+        <td><input class="7" type="checkbox" id="B7" name="B7" value="B7">
             <label class="7" for="B7">B7</label></td>
-        </tr>
-        </tbody>
-    </table>
+    </tr>
+    </tbody>
+</table>
 <label for="amtToGenerate">Amount of chords to pick (1–100):</label>
 <input type="number" id="amtToGenerate" min="1" max="100" value="1" step="1"/>
 <button id="getChordsButton">Generate Chords</button>

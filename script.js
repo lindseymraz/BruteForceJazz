@@ -149,14 +149,10 @@ function toggleAllChordsInCategory(e) {
             case "allFlatWhiteKeys": nodeList = document.querySelectorAll(`tr.flat.white input[type="checkbox"]`); break;
             case "allSharpWhiteKeys": nodeList = document.querySelectorAll(`tr.sharp.white input[type="checkbox"]`); break;
             case "allAccidentalWhiteKeys": nodeList = document.querySelectorAll(`tr.flat.white input[type="checkbox"], tr.sharp.white input[type="checkbox"]`); break;
+            case "maj7Box": nodeList = document.querySelectorAll(`tbody > tr > td:first-of-type > input[type="checkbox"]`); break;
+            case "min7Box": nodeList = document.querySelectorAll(`tbody > tr > td:nth-of-type(2) > input[type="checkbox"]`); break;
+            case "7Box": nodeList = document.querySelectorAll(`tbody > tr > td:nth-of-type(3) > input[type="checkbox"]`); break;
             default: alert("Error!"); //refactor uh oh
-        }
-    }
-    if(enforceAllSelectedToShowAtLeastOnce && e.target.checked) {
-        if(Number(document.getElementById("amtToGenerate").value) < nodeList.length + document.querySelectorAll(`input[type="checkbox"]:checked:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).length) {
-            alert("Checking this option will make it impossible to show all checked options at least once, as the count of chords to generate will be less than than count of checked options");
-            e.target.checked = false;
-            return;
         }
     }
     nodeList.forEach((chordInCategory) => {
@@ -164,6 +160,15 @@ function toggleAllChordsInCategory(e) {
             chordInCategory.checked = e.target.checked;
         }
     })
+    if(enforceAllSelectedToShowAtLeastOnce && e.target.checked) {
+        if(Number(document.getElementById("amtToGenerate").value) < document.querySelectorAll(`input[type="checkbox"]:checked:not(#enforceAllSelectedToShowAtLeastOnce, .noteName, .fastCheckToggles)`).length) {
+            alert("Checking this option will make it impossible to show all checked options at least once, as the count of chords to generate will be less than than count of checked options");
+            nodeList.forEach((chordInCategory) => {
+                chordInCategory.checked = false;
+            })
+            e.target.checked = false;
+        }
+    }
 }
 
 
@@ -197,7 +202,7 @@ function loadCookieContent() {
     }
 }
 
-//TODO: autoselect and deselect groups of checkboxes (enharmonic equivalents, column: maj7, min7, 7)
+//TODO: autoselect and deselect groups of checkboxes (enharmonic equivalents)
 //TODO: algorithm ensuring that you'll see every major, minor, and 7th iteration of a chord at least once within several sets
 //TODO: format the display like a piano where the key presses down when you have it selected
 //TODO: make it look better
